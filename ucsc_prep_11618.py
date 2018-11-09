@@ -61,5 +61,6 @@ for idx, row in bam_df.iterrows():
                   % (row['bam_name'].split('.b')[0], row['bam_name'], filename))
 
     # Removing the header and temporary files to reduce clutter:
+    os.system('rm temp_for_prog%s' % row['bam_name'])
     os.system('rm %s.temp.bedgraph' % row['bam_name'])
     os.system('rm %s_header.txt' % row['bam_name'].split('.b')[0])
