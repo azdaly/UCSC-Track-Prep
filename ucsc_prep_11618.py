@@ -53,9 +53,13 @@ for idx, row in bam_df.iterrows():
     # Catting all of the bedgraphs to the same file
     if idx == 0:
         os.system("""cat %s_header.txt %s.temp.bedgraph > \
-                  ./ucsc_files_for_transfer/%s.bedgraph"""
+                  %s.bedgraph"""
                   % (row['bam_name'].split('.b')[0], row['bam_name'], filename))
     else:
         os.system("""cat %s_header.txt %s.temp.bedgraph >> \
-                  ./ucsc_files_for_transfer/%s.bedgraph"""
+                  %s.bedgraph"""
                   % (row['bam_name'].split('.b')[0], row['bam_name'], filename))
+
+    # Removing the header and temporary files to reduce clutter:
+    os.system('rm %s.temp.bedgraph' % row['bam_name'])
+    os.system('rm %s_header.txt' % row['bam_name'].split('.b')[0])
