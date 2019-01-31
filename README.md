@@ -4,8 +4,7 @@ and generates a single-file track for all of the bam files that can be easily
 uploaded and viewed on UCSC Genome Browser. 
 
 
-![Image of browser]   
-(https://i.imgur.com/SHD28bj.png)
+![Image of browser](https://i.imgur.com/SHD28bj.png)
 
 # Dependencies  
 Python 3+  
