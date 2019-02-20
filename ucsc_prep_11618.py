@@ -39,7 +39,7 @@ for idx, row in bam_df.iterrows():
               (row['bam_name'], location, row['bam_name']))
 
     # Generating the bedgraph
-    os.system("""bedtools genomecov -ibam temp_for_prog%s -bg -scale %s > \
+    os.system("""bedtools genomecov -split -ibam temp_for_prog%s -bg -scale %s > \
               %s.temp.bedgraph""" %
               (row['bam_name'], row['normalized_read_depth'], row['bam_name']))
 
