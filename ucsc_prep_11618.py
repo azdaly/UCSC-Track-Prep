@@ -29,7 +29,7 @@ bam_df = pd.read_csv('ucsc_config.txt', sep=',', header='infer', )
 bam_df['sample_name'] = bam_df['sample_name'].astype(str)
 
 # Generating the tracknames
-bam_df['track_name'] = bam_df['sample_name'] + filename
+bam_df['track_name'] = bam_df['sample_name']
 
 # Adding a color column
 howmanycolors = bam_df.shape[0]
