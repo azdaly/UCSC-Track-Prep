@@ -20,6 +20,10 @@ def generate_rand_colors(how_many):
 location = input("Please input chromosomal location:   ")
 filename = input('Which gene are you looking at?  ')
 
+if location == '' or filename == '':
+	print('Please input valid location or gene name')
+	sys.exit()
+
 bam_df = pd.read_csv('ucsc_config.txt', sep=',', header='infer', )
 
 bam_df['sample_name'] = bam_df['sample_name'].astype(str)
@@ -35,16 +39,16 @@ bam_df['color'] = generate_rand_colors(howmanycolors)
 for idx, row in bam_df.iterrows():
 
     # Generating the smaller bam file
-    os.system('samtools view -bh %s %s > temp_for_prog%s' %
-              (row['bam_name'], location, row['bam_name']))
+    os.system('samtools view -bh %s %s > %s_temp_for_prog%s' %
+              (row['bam_name'], location, filename, row['bam_name']))
 
     # Generating the bedgraph
-    os.system("""bedtools genomecov -split -ibam temp_for_prog%s -bg -scale %s > \
-              %s.temp.bedgraph""" %
-              (row['bam_name'], row['normalized_read_depth'], row['bam_name']))
+    os.system("""bedtools genomecov -split -ibam %s_temp_for_prog%s -bg -scale %s > \
+              %s_%s.temp.bedgraph""" %
+              (filename, row['bam_name'], row['normalized_read_depth'],filename, row['bam_name']))
 
     # Generating the head file that we will add to the final product
-    header_file = open("%s_header.txt" % row['bam_name'].split('.b')[0], 'w')
+    header_file = open("%s_%s_header.txt" % (filename, row['bam_name'].split('.b')[0]), 'w')
     header_file.write("""track type="bedGraph" name="%s" color=%s \
                       visibility=full autoScale=off maxHeightPixels=100:50:11 \
                       viewLimits=0.0:1.5\nbrowser position %s\n"""
@@ -53,15 +57,15 @@ for idx, row in bam_df.iterrows():
 
     # Catting all of the bedgraphs to the same file
     if idx == 0:
-        os.system("""cat %s_header.txt %s.temp.bedgraph > \
+        os.system("""cat %s_%s_header.txt %s_%s.temp.bedgraph > \
                   %s.bedgraph"""
-                  % (row['bam_name'].split('.b')[0], row['bam_name'], filename))
+                  % (filename, row['bam_name'].split('.b')[0], filename, row['bam_name'], filename))
     else:
-        os.system("""cat %s_header.txt %s.temp.bedgraph >> \
+        os.system("""cat %s_%s_header.txt %s_%s.temp.bedgraph >> \
                   %s.bedgraph"""
-                  % (row['bam_name'].split('.b')[0], row['bam_name'], filename))
+                  % (filename, row['bam_name'].split('.b')[0], filename, row['bam_name'], filename))
 
     # Removing the header and temporary files to reduce clutter:
-    os.system('rm temp_for_prog%s' % row['bam_name'])
-    os.system('rm %s.temp.bedgraph' % row['bam_name'])
-    os.system('rm %s_header.txt' % row['bam_name'].split('.b')[0])
+    os.system('rm %s_temp_for_prog%s' % (filename, row['bam_name']))
+    os.system('rm %s_%s.temp.bedgraph' % (filename, row['bam_name']))
+    os.system('rm %s_%s_header.txt' % (filename, row['bam_name'].split('.b')[0]))
