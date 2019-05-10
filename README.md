@@ -1,7 +1,7 @@
 # Functionality  
 This is a script that takes indexed bam files (as delimited by ucsc_config.txt),
 and generates a single-file track for all of the bam files that can be easily
-uploaded and viewed on UCSC Genome Browser in the event that one doesn't have a 
+uploaded and viewed on UCSC Genome Browser in the event that one doesn't have a
 public server on which to host a large bigwig file.
 
 
@@ -24,6 +24,8 @@ You need to configure your ucsc_config.txt file to have three columns:
 1. Sample name
 2. Bam name (must match the name of the bam file exactly)
 3. Normalized read depth  
+4. Color - this should be in 'R.G.B.' format. Alternatively, leave at '0' and
+   it will generate random colors for each track.
 
 normalized_read_depth is calculated by getting read depth from the bam file
 followed by dividing by 1x10^6.  

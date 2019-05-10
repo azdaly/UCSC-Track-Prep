@@ -1,4 +1,4 @@
-sample_name,bam_name,normalized_read_depth
-Sample1,Sample1.bam,0.03386957105
-Sample2,Sample2.bam,0.0163355537
-Sample3,Sample3.bam,0.00386804082
+sample_name,bam_name,normalized_read_depth,color
+Sample1,Sample1.bam,0.03386957105,51.34.136
+Sample2,Sample2.bam,0.0163355537,136.204.238
+Sample3,Sample3.bam,0.00386804082,221.221.221
