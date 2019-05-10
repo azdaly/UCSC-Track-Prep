@@ -31,9 +31,12 @@ bam_df['sample_name'] = bam_df['sample_name'].astype(str)
 # Generating the tracknames
 bam_df['track_name'] = bam_df['sample_name']
 
-# Adding a color column
-howmanycolors = bam_df.shape[0]
-bam_df['color'] = generate_rand_colors(howmanycolors)
+# Checking if there's color, and adding some if there isn't
+if list(set(list(bam_df['color'])))[0] == 0:
+	howmanycolors = bam_df.shape[0]
+	bam_df['color'] = generate_rand_colors(howmanycolors)
+else:
+	bam_df['color'] = bam_df['color'].str.replace('.',',')
 
 # Going through each file
 for idx, row in bam_df.iterrows():
