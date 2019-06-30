@@ -20,7 +20,7 @@ When run the user will be prompted with two questions:
     - This is merely for track nomenclature - any single-word name works
 
 # Before you start  
-You need to configure your ucsc_config.txt file to have three columns:  
+You need to configure your ucsc_config.txt file to have four columns:  
 1. Sample name
 2. Bam name (must match the name of the bam file exactly)
 3. Normalized read depth  
