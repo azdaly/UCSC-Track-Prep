@@ -27,7 +27,6 @@ You need to configure your ucsc_config.txt file to have three columns:
 4. Color - this should be in 'R.G.B.' format. Alternatively, leave at '0' and
    it will generate random colors for each track.
 
-normalized_read_depth is calculated by getting read depth from the bam file
-followed by dividing by 1x10^6.  
+normalized_read_depth is calculated by dividing 1x10^6 by the read depth of the bam file.
 Get read depth using:  
 samtools view -F 0x4 foo.sorted.bam | cut -f 1 | uniq | wc -l
