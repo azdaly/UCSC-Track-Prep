@@ -29,4 +29,4 @@ You need to configure your ucsc_config.txt file to have four columns:
 
 normalized_read_depth is calculated by dividing 1x10^6 by the read depth of the bam file.
 Get read depth using:  
-samtools view -F 0x4 foo.sorted.bam | cut -f 1 | uniq | wc -l
+```samtools view -F 0x4 foo.sorted.bam | cut -f 1 | uniq | wc -l```
