@@ -2,7 +2,7 @@
 This is a script that takes indexed bam files (as delimited by ucsc_config.txt),
 and generates a single-file track for all of the bam files that can be easily
 uploaded and viewed on UCSC Genome Browser in the event that one doesn't have a
-public server on which to host a large bigwig file.
+public server on which to host a large bigwig file. **Note** This works for both genome and RNA sequencing!
 
 
 ![Image of browser](https://i.imgur.com/Y1noBTG.png)
